@@ -24,7 +24,7 @@ class TaskRequest(BaseModel):
 async def get_tasks(x_api_key: str = Header(...)):
     if x_api_key not in API_KEYS:
         raise HTTPException(status_code=401, detail="Invalid API Key")
-    return {"tasks": tasks[-5:]}
+    return tasks[-5:]
 
 @app.post("/api/add-task")
 async def add_task(request: TaskRequest, x_api_key: str = Header(...)):
